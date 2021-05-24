@@ -1,0 +1,28 @@
+\chapter{Gestión bibliográfica}
+
+\LaTeX permite crear una bibliografía, y gestionar las citas a las diferentes entradas bibliográficas. Existen dos maneras de crear dichas sección: manualmente o a partir de una base de datos bibliográfica externa.
+
+\section{Entradas manuales y citas}
+
+Para crear una sección de bibliografía manual deberemos incluir diversas entradas entre los comandos \textbackslash begin\{thebibliography\}\{\emph{nº entradas}\} ... \textbackslash end\{thebibliography\}.
+
+Las entradas se crean mediante el comando \textbackslash bibitem\{\emph{etiqueta}\} \emph{Entrada bibliográfica completa (autores, título, etc.)}.
+
+Por otro lado, para citar en nuestros documentos cualquier entrada se utilizará el comando \textbackslash cite\{\emph{etiqueta/s}\}. Las numeraciones de entradas, forma de citar, etc. lo gestiona \LaTeX automáticamente. Sin embargo, el estilo de las entradas bibliográficas hay que gestionarlo manualmente (orden de autores, formato de títulos, etc.).
+
+\section{Bases de datos bibliográficas externas y estilos automáticos}
+
+Podemos incluir una base de datos bibliográfica externa que siga el formato Bibtex (muy común en software de gestión bibliográfica y soportado por las principales editoriales). El comando para incluir una base de datos bibliográfica externa es \textbackslash bibliography\{\emph{nombre archivo Bibtex}\}.
+
+La principal ventaja, además de que podemos tener nuestras propias bases de datos compartidas entre diferentes documentos, es que el estilo de las entradas bibliográficas lo gestionará automáticamente \LaTeX. Para definir el estilo de las entradas bibliográficas se utilizará el comando \textbackslash bibliographystyle\{\emph{estilo}\}.
+
+Entre los estilos predeterminados de \LaTeX están\footnote{Hay infinidad más a través de paquetes especializados. También podemos definir nuestros propios estilos.}: \emph{abbrv}, \emph{acm}, \emph{abbrv}, \emph{alpha}, \emph{apalike}, \emph{IEEEtran}, \emph{plain}, \emph{siam}, \emph{unsrt}.
+
+Al final de este documento se ha incluido una sección de bibliografía, extraída del fichero ``bibliografia.bib''\footnote{El formato de este tipo de bases de datos bibliográficas es ajeno a este documento. Puede usarse software como JabRef, Bibdesk, Mendeley, etc. para generar dichas bases de datos.}. Se recomienda observar la bibliografía generada. Si se desea consultar más información, puede acudirse a las referencias \cite{overleaf-url, latexcompanion}.
+
+Se pueden observar diversas entradas bibliográficas de ejemplo a través de las siguientes citas: \cite{maths-latex}, \cite{lamport}.
+
+Se podrá observar, si se abre el archivo Bibtex que \LaTeX incluirá únicamente las entradas bibliográficas que se citen en el texto, omitiendo las que no.
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibliografia.bib}

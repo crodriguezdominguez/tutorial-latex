@@ -1,0 +1,437 @@
+\chapter{Tablas, figuras, ecuaciones e índices}
+
+\section{Figuras}
+
+Para poder incluir figuras en nuestros documentos es necesario incluir el paquete ``graphicx''. Además, es conveniente (aunque opcional) meter todas las figuras de nuestro documento en una carpeta dedicada a ello. \LaTeX permite predefinir una carpeta para incluir las figuras de todo nuestro documento usando el siguiente comando en el preámbulo: \textbackslash graphicspath\{ \{\emph{CARPETA}\} \}
+
+A diferencia de los procesadores de texto habituales, las figuras se \emph{referencian}, no se \emph{insertan} en el documento.
+
+Para referenciar una figura se utiliza en comando \textbackslash  includegraphics\{\emph{NOMBRE IMAGEN}\} (el nombre de la imagen también puede hacer referencia a una subcarpeta). En el nombre de la imagen no será necesario incluir la extensión. Además, \LaTeX no solo permitirá imágenes PNG, JPEG, etc., sino también gráficos vectoriales en formato PDF, EPS, etc. De hecho, se recomienda usar \textbf{imágenes en formato vectorial siempre que sea posible}.
+
+Veamos un ejemplo de imagen vectorial:
+
+\includegraphics{LaTeX_vectorial}
+
+Las figuras pueden también escalarse, rotarse, etc. según nuestras necesidades usando una variante del comando anterior: \textbackslash includegraphics[OPCIONES] \{\emph{NOMBRE IMAGEN}\}. 
+
+Al igual que en el resto de comandos de \LaTeX, las opciones se separan por comas. Las opciones más habituales disponibles para este comando son:
+
+\begin{itemize}
+	\item \emph{width}: Ancho de la imagen (en cm, mm, pt, etc.). Existen dos anchos especiales: \textbackslash textwidth y \textbackslash columnwidth. Con estos anchos podemos hacer la imagen del mismo ancho que el texto o columna actual, o bien aplicar un factor sobre dicho ancho. Por ejemplo \textbackslash includegraphics [width=0.5\textbackslash textwidth]\{\emph{NOMBRE IMAGEN}\} incluirá una imagen con un ancho del 50\% del ancho total del texto.
+	\item \emph{height}: Alto de la imagen.
+	\item \emph{scale}: Factor de escala sobre el tamaño original de la imagen.
+	\item \emph{angle}: Ángulo de rotación de la imagen en grados y en el sentido antihorario.
+\end{itemize}
+
+Veamos un ejemplo: % se recomienda "jugar" con estas opciones
+
+\includegraphics[width=0.2\textwidth, angle=45]{LaTeX}
+
+Se podrán observar como \LaTeX intentará que las imágenes se autoposicionen: se alterará el interlineado, se ampliarán márgenes, etc. Esto puede suponer un problema en diversos casos (sobretodo cuando tenemos restricciones en el número de páginas). En secciones posteriores aprenderemos como arreglar este problema.
+
+\section{Tablas}
+
+La definición de tablas en \LaTeX es quizás de las cuestiones más complejas que posee.
+
+La manera más básica de definir una tabla es como sigue:
+
+% mirar el código de prueba en el PDF, o en el siguiente párrafo del código
+\textbackslash begin\{tabular\}\{ c \vline c \vline c \}
+
+ Celda 1 \& Celda 2 \& Celda 3 \textbackslash\textbackslash
+ 
+ \textbackslash hline
+ 
+ Celda 4 \& Celda 5 \& Celda 6 \textbackslash\textbackslash
+ 
+ Celda 7 \& Celda 8 \& Celda 9
+  
+\textbackslash end\{tabular\}
+
+Cuya visualización sería la siguiente: % mirar en el PDF el resultado
+
+% mirar atentamente este código para saber como crear una tabla en LaTeX
+\begin{tabular}{ c|c|c }
+ Celda 1 & Celda 2 & Celda 3 \\
+ \hline
+ Celda 4 & Celda 5 & Celda 6 \\  
+ Celda 7 & Celda 8 & Celda 9    
+\end{tabular}
+
+Se puede observar como se deben de especificar las columnas primero, con la alineación de cada una:
+
+\begin{itemize}
+	\item \emph{c}: Columna centrada
+	\item \emph{r}: Columna alineada a la derecha
+	\item \emph{l}: Columna alineada a la izquierda
+\end{itemize}
+
+% nótese que las lineas verticales en LaTeX se escriben con \vline. El símbolo | se usa para crear líneas horizontales largas.
+Las ``\vline'' permiten especificar los bordes en las columnas. Se pueden poner dobles o simples, externos o internos, y allá donde deseemos.
+
+A nivel de contenidos, las diferentes columnas se separan con el símbolo \&. Las filas con el símbolo ``\textbackslash\textbackslash'', que en \LaTeX permite además crear un salto de línea.
+
+Para dividir las filas, de manera opcional también podemos usar el comando ``\textbackslash hline'', que crea una línea horizontal.
+
+Podemos especificar líneas horizontales entre determinadas columnas únicamente usando el comando ``\textbackslash cline\{COL. INICIAL - COL. FINAL\}''.
+
+\subsection{Tamaños de columnas}
+
+Para poder especificar tamaños de columnas fijos es necesario incluir en el preámbulo el paquete ``array''.
+
+Podemos crear columnas con un tamaño fijo usando para ello, en la especificación de las columnas, el tipo especial \emph{m} de la siguiente forma:
+
+\textbackslash begin\{tabular\}\{ m\{TAMAÑO\} \vline m\{TAMAÑO\} \vline m\{TAMAÑO\} \}
+
+ Celda 1 \& Celda 2 \& Celda 3 \textbackslash\textbackslash
+ 
+ \textbackslash hline
+ 
+ Celda 4 \& Celda 5 \& Celda 6 \textbackslash\textbackslash
+ 
+ Celda 7 \& Celda 8 \& Celda 9
+  
+\textbackslash end\{tabular\}
+
+Cuya visualización sería la siguiente: % mirar en el PDF el resultado
+
+% mirar atentamente este código para saber como crear una tabla en LaTeX con columnas de tamaño fijo
+\begin{tabular}{ m{2.5cm}|m{25mm}|m{40pt}|m{0.15\textwidth} }
+ Celda 1 & Celda 2 & Celda 3 & Celda 4 \\
+ \hline
+ Celda 5 & Celda 6 & Celda 7 & Celda 8 \\  
+ Celda 9 & Celda 10 & Celda 11 & Celda 12   
+\end{tabular}
+
+\subsection{Combinación de filas y columnas}
+
+Para poder combinar filas y columnas es necesario incluir el paquete ``multirow'' en el preámbulo.
+
+Un ejemplo de tabla con filas y columnas combinadas es el que sigue\footnote{Mirar el código de este documento para entender cómo se especifican}:
+
+\begin{tabular}{ |l||c|  }
+ \hline
+ \multicolumn{2}{|c|}{\textbf{Comunidades autónomas}} \\
+ \hline
+  \emph{Nombre} & \emph{Provincia}\\
+ \hline
+ % en las filas combinadas es necesario especificar el ancho de la columna o bien poner * para que se calcule automáticamente
+ \multirow{8}{*}{Andalucía} & Granada\\
+ \cline{2 - 2} % línea horizontal solo para la columna 2
+ 	& Almería\\
+ \cline{2 - 2}
+ 	& Jaén\\
+ \cline{2 - 2}
+ 	& Málaga\\
+ \cline{2 - 2}
+ 	& Cádiz\\
+ \cline{2 - 2}
+ 	& Córdoba\\
+ \cline{2 - 2}
+ 	& Sevilla\\
+ \cline{2 - 2}
+ 	& Huelva\\
+ \hline
+ \multirow{2}{*}{Extremadura} & Cáceres\\
+ \cline{2 - 2} % línea horizontal solo para la columna 2
+ 	& Badajoz\\
+ \hline
+\end{tabular}
+
+\section{Listados de código}
+
+A lo largo de este documento hemos tenido que incluir código de \LaTeX para comprender su sintaxis. Existen dos comandos para hacer listados de código de manera mucho más sencilla a como hemos visto hasta ahora.
+
+El primero de hechos es \emph{verbatim}, que permite incluir texto ``literal'' en nuestros documentos, sin que \LaTeX interprete ninguno de sus contenidos como un posible comando. El siguiente ejemplo ilustra el uso de este comando\footnote{Observar PDF y código}:
+
+\begin{verbatim}
+	\begin{tabular}{ m{2.5cm}|m{25mm}|m{40pt}|m{0.15\textwidth} }
+ 		Celda 1 & Celda 2 & Celda 3 & Celda 4 \\
+ 		\hline
+ 		Celda 5 & Celda 6 & Celda 7 & Celda 8 \\  
+ 		Celda 9 & Celda 10 & Celda 11 & Celda 12   
+	\end{tabular}
+\end{verbatim}
+
+Obsérvese como \emph{verbatim} además usa un tipo de fuente especial para estos fragmentos de texto.
+
+El otro comando, mucho más avanzado que \emph{verbatim}, es \emph{lstlisting}. Dicho comando requiere incluir el paquete ``listings'' en el preámbulo del documento. Este comando se diferencia de \emph{verbatim} en que permite incluir ficheros externos, realzar partes del código con colores o tipos de letras diferentes, etc. Además, incluye soporte por defecto a multitud de lenguajes de programación, aunque podemos especificar nuestro propio esquema de realzado para cualquier texto o lenguaje. El listado de lenguajes soportados por defecto podemos consultarlo en: \url{https://es.overleaf.com/learn/latex/Code_listing#Reference_guide}.
+
+El siguiente ejemplo ilustra el uso de este comando para mostrar un código del lenguaje R\footnote{Observar PDF y código}:
+
+\begin{lstlisting}[language=R]
+if(num < 0) {
+   print("El factorial no existen para numeros negativos")
+} else if(num == 0) {
+   print("El factorial de 0 es 1")
+} else {
+   for(i in 1:num) {
+      factorial = factorial * i
+   }
+   print(paste("El factorial de", num ,"es",factorial))
+}
+\end{lstlisting}
+
+El ejemplo que se muestra a continuación incluye un código R desde un fichero externo (carpeta ``codigo\_externo/ejemplo.R''):
+
+\lstinputlisting[language=R]{codigo_externo/ejemplo.R}
+
+Entre las opciones de este comando de importación de código externo están \emph{firstline} y \emph{lastline}, que permiten especificar el rango de líneas de código a mostrar en el documento.
+	
+\section{Ecuaciones}
+
+El soporte a ecuaciones en \LaTeX es ampliamente conocido. De hecho, su funcionalidad es tan amplia y avanzada que hay personas que piensan que \LaTeX es un lenguaje exclusivamente para ``matemáticos'' (¡nada más lejos de la realidad!).
+
+Para crear una ecuación en línea simplemente deberemos escribir dicha ecuación entre \$. Por ejemplo el código \$x\^{}2+x+1=y\_1\$ generaría como resultado\footnote{véase código y PDF a la vez} $x^2+x+1=y_1$.
+
+Si las ecuaciones se escriben entre \$\$, entonces \LaTeX reservará una línea específica para dichas ecuaciones y unos márgenes superiores e inferiores.
+
+Veamos algunos ejemplos para tener una referencia de la escritura básica de ecuaciones (dicha escritura esta fuera del ámbito de esta guía):
+
+$$[ x^n + y^n = z^n ]$$
+$$( x_1+x_2=4 )$$
+$$E=mc^2$$
+$$2\times 2 = 4$$
+$$2\div 2 = 4$$
+$$\frac{1}{2} = 0.5$$
+$$\sqrt{\pi}$$
+$$x \in \Re$$
+$$\prod_{i=a}^{b} f(i) $$
+$$\sum_{n=1}^{\infty} 2^{-n} = 1 $$
+$$\lim_{x\to\infty} f(x)$$
+$$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
+% El comando \, permite poner un espacio "a mano" en nuestras ecuaciones
+$$\int_0^1 f(x) \,dx$$
+$$\oint_V f(s) \,ds$$
+$$\begin{pmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{pmatrix}$$
+
+Es importante notar que \LaTeX tiene soporte para todas las letras griegas dentro de las ecuaciones, usando para ello ``\textbackslash nombre letra''. Por ejemplo, ``\textbackslash beta'' generaría la letra griega $\beta$. Veamos algunos ejemplos\footnote{Mirar detenidamente el código y el resultado en el PDF}:
+
+$$\alpha^n_1 + \beta^n = \rho_{n,1}$$
+$$\int_\epsilon^\gamma x^n \,dx = \frac{\gamma^{n+1}}{n+1} - \frac{\epsilon^{n+1}}{n+1} + C$$
+
+\LaTeX además incluye infinidad de comandos adicionales para operadores, símbolos, matrices, etc. Muchos de ellos se pueden consultar en \url{https://es.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols}.
+
+\section{Posicionamiento}
+
+Como hemos observado previamente, \LaTeX es capaz de posicionar automáticamente nuestras figuras o tablas. Sin embargo, en muchas ocasiones es necesario realizar dichos posicionamientos manualmente. En las siguientes subsecciones aprenderemos cómo hacer esto.
+
+Para posicionar nuestras figuras deberemos incluirlas dentro entre los comandos \textbackslash begin\{figure\}[\emph{OPCIONES POSICIONAMIENTO}] ... \textbackslash end\{figure\}.
+
+Por ejemplo, podríamos usar el siguiente código para posicionar manualmente una de las imágenes que hemos usado previamente en nuestros ejemplos:
+
+\begin{lstlisting}
+\begin{figure}[h]
+	\includegraphics{LaTeX_vectorial}	
+\end{figure}
+\end{lstlisting}
+
+Cuyo resultado sería:
+
+\begin{figure}[h]
+	\includegraphics{LaTeX_vectorial}	
+\end{figure}
+
+Entre las opciones de posicionamiento se encuentran las siguientes:
+
+\begin{itemize}
+	\item \emph{h}: Posicionar ``aquí'', posiciona, si se puede, en el mismo lugar del texto donde ponemos nuestro código de inserción de la figura.
+	\item \emph{t}: Posicionar en la parte superior de la página actual.
+	\item \emph{b}: Posicionar en la parte inferior de la página actual.
+	\item \emph{p}: Posicionar en una página especial al final de todo el documento, junto al resto de figuras que posicionemos ahí.
+\end{itemize}
+
+Podemos combinar las opciones previas. Por ejemplo podemos poner como opción \emph{hb}, para indicar que se posicione la figura exáctamente donde hemos puesto el código de inserción, pero si no se pudiese, que entonces se posicione en la parte inferior de la página.
+
+También podemos agregar el símbolo ``!'' al final de las opciones de posicionamiento, para indicar que \LaTeX evite hacer cualquier posicionamiento automático en ningún caso. Por ejemplo, la opción ``h!'' pondría en cualquier caso la figura justo en el lugar donde hemos escrito el código de inserción de la misma.
+
+Para posicionar nuestras tablas, será necesario crearlas entre los comandos \textbackslash begin\{table\}[OPCIONES POSICIONAMIENTO] ... \textbackslash end\{table\}. Por lo demás, es equivalente al posicionamiento de figuras.
+
+Adicionalmente, podemos usar \textbackslash begin\{wrapfigure\} ... \textbackslash end\{wrapfigure\} ó \textbackslash begin\{wraptable\} ... \textbackslash end\{wraptable\}, para crear figuras o tablas, respectivamente, que se posicionen de tal manera que el texto del documento las envuelva. Estos comandos estarán disponibles una vez incluyamos el paquete ``wrapfig'' en el preámbulo del documento.
+
+Por ejemplo, si usamos el siguiente código:
+
+\begin{lstlisting}
+Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer 
+adipiscing elit. Duis fringilla tristique neque. Sed interdum 
+libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. 
+Morbi sed elit sit amet ante lobortis sollicitudin.
+
+\begin{wraptable}{r}{8cm}
+  \begin{tabular}{ c|c|c|c }
+    Celda 1 & Celda 2 & Celda 3 & Celda 4 \\
+    \hline
+    Celda 5 & Celda 6 & Celda 7 & Celda 8
+  \end{tabular}
+\end{wraptable}
+
+Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer 
+adipiscing elit. Duis fringilla tristique neque. Sed interdum 
+libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. 
+Morbi sed elit sit amet ante lobortis sollicitudin.
+\end{lstlisting}
+
+
+Obtendremos como resultado:
+
+\emph{Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer 
+adipiscing elit. Duis fringilla tristique neque. Sed interdum 
+libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. 
+Morbi sed elit sit amet ante lobortis sollicitudin.}
+
+\begin{wraptable}{r}{8cm}
+\begin{tabular}{ c|c|c|c }
+ 		Celda 1 & Celda 2 & Celda 3 & Celda 4 \\
+ 		\hline
+ 		Celda 5 & Celda 6 & Celda 7 & Celda 8
+\end{tabular}
+\end{wraptable}
+
+\emph{Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer 
+adipiscing elit. Duis fringilla tristique neque. Sed interdum 
+libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. 
+Morbi sed elit sit amet ante lobortis sollicitudin.}
+
+Nótese como a continuación de \textbackslash begin\{wrapXXX\} hay que especificar el posicionamiento y el tamaño de la figura o tabla, siendo las opciones de posicionamiento: 
+\begin{itemize}
+	\item \emph{r}: derecha
+	\item \emph{l}: izquierda
+	\item \emph{c}: centro
+	\item \emph{i}: interno
+	\item \emph{o}: externo
+\end{itemize}
+
+\section{Leyendas}
+
+\subsection{Figuras o tablas}
+
+Para poner una leyenda a nuestra figura o tabla, simplemente se utilizará el comando \textbackslash caption\{\emph{LEYENDA}\} entre los comandos \textbackslash begin\{figure\} ... \textbackslash end\{figure\}, \textbackslash begin\{table\} ... \textbackslash end\{table\}, \textbackslash begin\{wrapfigure\} ... \textbackslash end\{wrapfigure\} ó \textbackslash begin\{wraptable\} ... \textbackslash end\{wraptable\}.
+
+\LaTeX se encargará de numerar adecuadamente las leyendas, aplicarles un estilo, posicionarlas, etc.
+
+Por ejemplo, el código:
+
+\begin{lstlisting}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{LaTeX_vectorial}
+  \caption{Leyenda de una figura}	
+\end{figure}
+
+\begin{figure}[h]
+  \caption{Leyenda de otra figura (arriba)}	
+  \centering
+  \includegraphics[width=0.3\textwidth]{LaTeX_vectorial}
+\end{figure}
+\end{lstlisting}
+
+Generará como resultado:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\textwidth]{LaTeX_vectorial}
+	\caption{Leyenda de una figura (debajo)}	
+\end{figure}
+
+\begin{figure}[h]
+  \caption{Leyenda de otra figura (encima)}	
+  \centering
+  \includegraphics[width=0.3\textwidth]{LaTeX_vectorial}
+\end{figure}
+
+Nótese como se ha utilizado el comando \textbackslash centering, muy habitual al especificar leyendas, para centrar la figura.
+
+\subsection{Subfiguras}
+
+Entre los comandos \textbackslash begin{figure}[OPCIONES POSICIONAMIENTO] ... \textbackslash end{figure} podemos especificar más de una figura a modo de ``subfiguras'', cada una con su propia leyenda. Para ello, primeramente deberemos incluir el paquete ``subcaption'' dentro del preámbulo.
+
+Por ejemplo, el código:
+
+\begin{lstlisting}
+\begin{figure}[h]
+  \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=0.9\linewidth]{LaTeX_vectorial}
+    \caption{Leyenda 1}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=0.9\linewidth]{LaTeX_vectorial}
+    \caption{Leyenda 2}
+  \end{subfigure}
+	
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{LaTeX_vectorial}
+    \caption{Leyenda 3}
+  \end{subfigure}
+
+  \caption{Leyenda para las tres figuras}
+\end{figure}
+\end{lstlisting}
+
+Generaría el siguiente resultado:
+
+\begin{figure}[h]
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[width=0.9\linewidth]{LaTeX_vectorial} 
+		\caption{Leyenda 1}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[width=0.9\linewidth]{LaTeX_vectorial}
+		\caption{Leyenda 2}
+	\end{subfigure}
+	% si se pone un intro adicional entre dos subfigures, entonces se pasa a la siguiente línea
+	
+	\begin{subfigure}{\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{LaTeX_vectorial}
+		\caption{Leyenda 3}
+	\end{subfigure}
+
+	\caption{Leyenda para las tres figuras}
+\end{figure}
+
+\subsection{Código}
+
+Para incluir una leyenda en un código especificado entre \textbf{\textbackslash begin\{lstlisting\} ... \textbackslash end\{lstlisting\}} ó \textbf{\textbackslash lstinputlisting} usaremos la opción ``caption'' de dichos comandos.
+
+Por ejemplo el comando \textbackslash lstinputlisting[language=R, caption=Ejemplo] \{codigo\_externo/ejemplo.R\} generará:
+
+\lstinputlisting[language=R, caption=Código R de ejemplo]{codigo_externo/ejemplo.R}
+
+\section{Etiquetas y referencias cruzadas}
+
+Después de escribir cualquier comando que genere una numeración (capítulos, secciones, leyendas, etc.) podremos escribir el comando especial \textbackslash label\{\emph{nombre etiqueta}\}. Dichas etiquetas nos permitirán referenciar los números generados por \LaTeX mediante el comando complementario \textbackslash ref\{\emph{nombre etiqueta}\}. De esta forma, si cambia el documento, se reestructura, etc., jamás tendremos que preocuparnos de revisar las numeraciones de las referencias cruzadas.
+
+Por ejemplo, a continuación vamos a referenciar la Figura \ref{fig:refs} y la Sección \ref{sec:indices}. En el primer caso, hemos puesto la etiqueta ``fig:refs'' tras la leyenda de la figura. En el segundo caso hemos puesto la etiqueta ``sec:indices'' tras el comando para generar la sección ``Índices'' (\ref{sec:indices}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.2\textwidth]{LaTeX_vectorial}
+	\caption{Figura de ejemplo}	
+	\label{fig:refs}
+\end{figure}
+
+Para etiquetar ecuaciones será necesario usar los comandos \textbf{\textbackslash begin\{equation\} ... \textbackslash end\{equation\}} para escribir nuestras ecuaciones en vez de \$ ó \$\$. Dentro podremos incluir el comando \textbackslash label.
+
+\section{Índices}
+\label{sec:indices}
+
+Existen principalmente tres comandos para generar índices:
+
+\begin{itemize}
+	\item \textbackslash tableofcontents: Índice de capítulos, secciones, etc.
+	\item \textbackslash listoffigures: Índice de figuras.
+	\item \textbackslash listoftables: Índice de tablas.
+\end{itemize}
+
+Como ejemplo, al final de este capítulo se han incluido un índice de tablas y otro de figuras.
+
+Estos comandos tienen multitud de opciones adicionales que pueden consultarse en \url{https://es.overleaf.com/learn/latex/Table_of_contents}, \url{https://es.overleaf.com/learn/latex/Indices} y \url{https://es.overleaf.com/learn/latex/Lists_of_tables_and_figures}.
+
+Por otro lado, podemos agregar nuestros propias entradas de índices personalizadas con el comando \textbackslash addcontentsline\{toc\}\{\emph{tipo entrada}\}\{\emph{título entrada}\}. El tipo de entrada corresponde con \emph{chapter}, \emph{section}, \emph{subsection}, etc., y permitirá que \LaTeX formatee correctamente la entrada agregada.
+
+\listoffigures
+\listoftables

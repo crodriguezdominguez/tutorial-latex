@@ -1,0 +1,312 @@
+\documentclass[12pt]{book} % "book",  "article",  "report" ... 
+\usepackage[utf8]{inputenc} % para que se acepten acentos, ñ, etc.
+
+\usepackage[spanish]{babel} % traduce los textos autogenerados al español
+\usepackage{url} % permite poner urls en nuestro texto
+\usepackage[dvipsnames]{xcolor} % uso de colores básicos y avanzados
+\usepackage{amsmath} % ecuaciones y operadores matemáticos avanzados
+\usepackage{amssymb} % símbolos matemáticos
+\usepackage{graphicx} % posibilidad de trabajar con imágenes
+\usepackage{array} % gestión avanzada de tablas
+\usepackage{multirow} % combinación de filas y columnas en tablas
+\usepackage{listings} % permite incluir listados de código (cap. 2)
+\usepackage{subcaption} % permite crear "subfiguras"
+\usepackage{wrapfig} % tablas o imágenes envueltas en texto
+\graphicspath{ {imagenes/} } % carpeta donde meteremos las imágenes
+
+% el comando \LaTeX incluye el logo de LaTeX en el documento.
+\title{Tutorial de \LaTeX}
+\author{Carlos Rodríguez Domínguez}
+\date{Mayo 2021}
+
+\begin{document}
+
+\frontmatter % en el tipo de documento "book", esto indica que aquí comienza el título, índices, etc. Observar numeración de páginas.
+\maketitle % muestra el título
+\tableofcontents % crea un índice
+
+% al incluir un * tras un chapter, section, etc., este no se numerará y no se incluirá por defecto en el índice.
+% esto es común para agradecimientos, abstract, etc.
+\chapter*{Notas iniciales}
+
+El objetivo de este documento es demostrar las funcionalidades más básicas y comunes de \LaTeX.
+
+Este documento debe leerse compaginando la lectura del código fuente con el PDF generado por \LaTeX. Es muy recomendable mantener en pantalla ambos contenidos en todo momento, y tratar de entender  cómo se generan los contenidos del documento PDF a partir de los comandos de \LaTeX.
+
+Se asume que el lector de este documento ya posee una instalación de \LaTeX y un editor de dicho lenguaje.
+
+\mainmatter % en el tipo de documento "book", esto indica que aquí comienza el contenido principal del documento
+
+\chapter{Sintáxis básica}
+
+\LaTeX permite escribir textos de manera cómoda y sencilla.  Nos va a ayudar a darle un estilo profesional a todo lo que escribamos, y a autogenerar índices,  capítulos,  secciones, etc.
+
+Al principio \LaTeX es un poco abrumador, así que trataremos de aprenderlo paso a paso.
+
+Para ello, leeremos este documento con el código a su lado. De esta manera observaremos cómo se podría escribir un documento similar a este.
+
+\section{Comandos}
+
+Los comandos son instrucciones para \LaTeX que permiten formatear nuestro documento como deseemos. Siempre comienzan por la letra \textbackslash.
+
+Los comandos tienen parámetros y opciones. Los parámetros son aquellos contenidos que toma el comando para poder producir los resultados que esperamos. Las opciones son parámetros no obligatorios que habitualmente alteran la manera de actuar del comando principal. Por ejemplo, pueden cambiar el tamaño por defecto de una figura (se verá más adelante).
+
+\section{Comentarios} % Esto puede ser un comentario. Podemos ver que en el pdf generado no aparece
+
+Dentro de nuestro código podemos dejar indicaciones para recordar ciertos detalles o dar instrucciones a nuestros compañeros. Los comentarios jamás se visualizarán en el documento final. Los comentarios debemos comenzarlos por el símbolo \%.
+
+\section{Símbolos reservados y caracteres especiales}
+
+% en esta sección mirar detenidamente el código y el resultado en el PDF
+Para usar dentro de nuestros textos los símbolos que utiliza \LaTeX para dar estilo a los textos o especificar el preámbulo, que son: \# \$ \% \& \{ \} \_ \~{} \^{} \textbackslash, debemos anteponer en nuestro código a dichos símbolos el símbolo \textbackslash. El propio símbolo \textbackslash es un tanto especial, y hay que escribirlo mediante el comando \textbackslash textbackslash.
+
+Por otro lado, si deseamos insertar caracteres especiales lo tendremos que hacer mediante comandos. Un amplio listado de dichos comandos está disponible en: \url{https://en.wikibooks.org/wiki/LaTeX/Special_Characters}. 
+
+\section{Preámbulo}
+
+Los documentos \LaTeX incluyen códigos para que se puedan generar los documentos finales adecuadamente.  Todo lo que se escribe en el código antes de \textbf{\textbackslash begin\{document\}} se le conoce como el preámbulo.
+
+El preámbulo incluye información sobre los paquetes que necesitamos usar para generar el documento final, el tipo de documento que estamos escribiendo, tamaño de letra, estilo básico, etc.
+
+Además, en el preámbulo se especifica el título, autor y fecha del documento.
+
+\section{Tipos de documentos}
+
+\LaTeX es capaz de aplicar estilos predefinidos a diversos tipos de documentos: libros, artículos, etc. Dichos estilos se aplican en el preámbulo, dentro del comando \textbf{\textbackslash documentclass}.
+
+Entre los estilos de los que disponemos por defecto (se recomienda probarlos) están: \emph{article}, \emph{report}, \emph{book}, etc. \LaTeX permite definir nuestros propios estilos (muy avanzado), o bien incluir estilos de terceros (muy habitual en congresos/revistas).
+
+Asimismo, el comando \textbf{\textbackslash documentclass} permite especificar el tamaño del papel (\emph{a4paper}, \emph{a5paper}, \emph{executivepaper}, etc.), de la tipografía por defecto, el número de columnas (\emph{onecolumn}, \emph{twocolumn}), y un largo etcétera de opciones avanzadas.
+
+\section{Estructura de un documento}
+
+Los documentos se estructuran en capítulos (\textbf{\emph{\textbackslash chapter\{nombre\}}}), secciones (\textbf{\emph{\textbackslash section\{nombre\}}}), subsecciones (\textbf{\emph{\textbackslash subsection\{nombre\}}}), subsubsecciones (\textbf{\emph{\textbackslash subsubsection\{nombre\}}}), subsubsub...section (\textbf{\emph{\textbackslash  subsubsub...section \{nombre\}}}). Si tras cualquiera de estos elementos ponemos un * (e.g.: \emph{chapter*\{Nombre capítulo\}}), entonces dicho elemento no se numerará y no se incluirá por defecto en ningún índice.
+
+Según el tipo de documento, puede que algunos de estos elementos estructurales no estén disponibles, y en cambio estén disponibles otros en su lugar.
+
+Por ejemplo, el tipo de documento \emph{beamer} permite crear con \LaTeX presentaciones de diapositivas. En este caso no se aceptaría la división por capítulos, y en su lugar se permitiría la definición de diapositivas entre los comandos \textbf{\textbackslash begin\{frame\} ... \textbackslash end\{frame\}}.
+
+En el tipo de documento \emph{book} se permite también la creación de anexos como capítulos especiales definidos entre los comandos \textbf{\textbackslash begin\{appendices\} ... \textbackslash end\{appendices\}}.
+
+Por otro lado, en el tipo \emph{book} podemos especificar qué partes de nuestro documento están orientados al título, abstract, índices, etc., al contenido principal y a la bibliografía, glosarios, etc. Para ello, usaremos, respectivamente el comando \textbackslash frontmatter, \textbackslash mainmatter y \textbackslash backmatter justo antes del comienzo de cada uno de estos apartados de nuestro documento. Estos comandos permiten que los números de páginas y el estilo general de las páginas sean diferentes según la parte del documento que estemos especificando.
+
+Finalmente, podremos siempre usar el comando \textbackslash clearpage para forzar un salto de página.
+
+\section{Paquetes}
+
+Antes hemos mencionado los ``paquetes''. Un paquete es un archivo de \LaTeX que incluye nuevos estilos, comandos, opciones, etc. para dar un formato apropiado a nuestros documentos. Hay multitud de dichos paquetes, y es imprescindible conocer algunos de ellos para poder escribir un documento.
+
+Un paquete se incluye en el preámbulo mediante la palabra \textbackslash usepackage. Podemos observar en el código de este documento los paquetes más básicos que se usan en casi cualquier documento \LaTeX. 
+
+El nombre del paquete será el indicado entre \{ \}.  Entre [ ] se introducen las opciones para configurar dicho paquete.
+
+Los, literalmente, cientos de paquetes disponibles en \LaTeX se pueden consultar en: \url{https://ctan.org/pkg}.
+
+% obsérvese como podemos usar el comando \url{} para incluir urls en nuestros textos. LaTeX generará los hipervínculos automáticamente y le pondrá un estilo diferente.
+
+Es bueno que al incluir un paquete dejemos un pequeño comentario en nuestro código para indicar para qué sirve dicho paquete.
+
+\section{Estilos básicos}
+
+En \LaTeX podemos,  al igual que en Word, escribir en \textbf{negrita}, \emph{cursiva} o \underline{subrayar}.
+
+Para crear párrafos formateados adecuadamente debemos siempre recordar dar dos intros en nuestro código.
+
+Con \LaTeX es bueno atender a los detalles de estilo para conseguir unos resultados muy \textbf{\underline{\emph{profesionales}}}. La forma alternativa de introducir las dobles comillas ``'' es un ejemplo de ello.
+
+\section{Tamaños y tipos de fuentes}
+
+En el preámbulo podemos especificar el tamaño por defecto de la fuente para todo el documento (comando \emph{documentclass}). No obstante, podemos especificar cualquiera de los siguientes tamaños por defecto para nuestros textos (una vez que ponemos un tamaño de letra, continuará dicho tamaño hasta que no pongamos otro):
+
+\Huge Texto, \huge  Texto, \LARGE Texto, \Large Texto, \large Texto, \normalsize Texto (por defecto), \small Texto, \footnotesize Texto, \scriptsize Texto, \tiny Texto
+
+\normalsize % es necesario poner esto para que se vuelva a poner el tamaño por defecto del documento
+
+Asimismo, podemos especificar tamaños personalizados de fuente y de interlineado:
+
+% en LaTeX se pueden especificar los tamaños mediante puntos, cm, mm, etc.
+\fontsize{22pt}{1cm}\selectfont Texto
+% el primer parámetro es el tamaño de la tipografía y el segundo el tamaño de interlineado.
+
+\normalsize % es necesario poner esto para que se vuelva a poner el tamaño por defecto del documento
+
+Igualmente podemos especificar el tipo de fuente: 
+
+\textrm{Esta frase tiene una tipografía \emph{serif} (por defecto)}
+
+\textsf{Esta frase tiene una tipografía \emph{sans serif}}
+
+\texttt{Esta frase tiene una tipografía \emph{typewriter}}
+
+O bien especificarla para todo nuestro documento en el preámbulo mediante el comando: % mirar el comando en el PDF
+
+\textbackslash renewcommand\{\textbackslash familydefault\}\{\textbackslash sfdefault\}
+
+Los tipos de fuentes disponibles para el preámbulo son: \textbackslash rmdefault (serif, por defecto), \textbackslash sfdefault (sans serif), \textbackslash ttdefault (typewriter)
+
+Mediante paquetes adicionales se dispone de una gran variedad de tipografías (tantas como en cualquier procesador de textos).
+
+\section{Colores}
+
+\subsection{Texto}
+
+Al incluir el paquete ``xcolor'' en el preámbulo podremos colorear  nuestro texto. Para ello usaremos el comando \textbackslash textcolor\{\emph{nombre color}\}, siendo el nombre del color cualquiera de los disponibles de manera predeterminada o cualquier definido por nosotros en el preámbulo del documento.
+
+Veamos un ejemplo:
+
+\textcolor{red}{Praesent in sapien}.
+\textcolor{blue}{Lorem ipsum dolor sit amet, consectetuer 
+adipiscing elit}.
+\textcolor{TealBlue}{Duis fringilla tristique neque}.
+\textcolor{GreenYellow}{Sed interdum libero ut metus}.
+\textcolor{gray}{Pellentesque placerat. Nam rutrum augue a leo}. 
+\textcolor{pink}{Morbi sed elit sit amet ante lobortis sollicitudin.}
+
+Podemos consultar el listado completo de colores básicos y avanzados en: \url{https://es.overleaf.com/learn/latex/Using_colours_in_LaTeX#Reference_guide}.
+
+Si algún color no está disponible en dicho listado, o deseamos especificar uno muy concreto, podemos usar el comando \textbackslash definecolor\{\emph{nombre nuevo color}\}\{\emph{formato (e.g.: RGB)}\}\{\emph{valores (e.g.: 219, 48, 122}\} en el preámbulo del documento. A partir de ese momento podremos usar ese nombre de color para especificar dicho color en todo nuestro documento.
+
+\subsection{Fondo de páginas y color por defecto}
+
+El color de fondo se especifica mediante el comando \textbackslash pagecolor\{nombre color\} y el color del texto por defecto mediante  \textbackslash color\{nombre color\}
+
+\section{Alineación de textos}
+
+\begin{flushleft}
+El texto lo podemos escribir alineado a la izquierda,	
+\end{flushleft}
+
+\begin{center}
+centrado
+\end{center}
+
+\begin{flushright}
+o alineado a la derecha,	
+\end{flushright}
+
+\section{Notas al pie y al margen}
+
+\LaTeX permite crear notas al pie o al margen de página de manera muy simple, usando los comandos \textbackslash foonote\{nota al pie\} y  \textbackslash marginpar\{nota al margen\}.
+
+Por ejemplo, este párrafo tiene asociado una nota al pie de página\footnote{Las notas al pie de página en \LaTeX son muy sencillas de incluir}.
+
+Este otro tiene asociado una nota al margen (podemos observar como las notas al margen no están numeradas)\marginpar{Las notas al margen de página en \LaTeX son muy sencillas de incluir}.
+
+\section{Listas}
+
+Existen dos tipos de listas: Numeradas y no numeradas. Un ejemplo de ambas es el siguiente:
+
+\begin{enumerate}
+\item Primero
+\item Segundo
+\end{enumerate}
+
+\begin{itemize}
+\item Primero
+\item Segundo
+\end{itemize}
+
+Además, se pueden anidar:
+
+\begin{itemize}
+\item Primero
+	\begin{enumerate}
+	\item A
+	\item B
+	\end{enumerate}
+\item Segundo
+	\begin{enumerate}
+	\item A
+	\item B
+	\end{enumerate}
+\end{itemize}
+
+\subsection{Estilos en listas no numeradas}
+
+Podemos personalizar los estilos de las listas mediante mediante el siguiente código en el preámbulo (se cambiaría el estilo de todas las listas de todo el documento) o justo antes de comenzar una lista (solo se aplica a partir de dicha lista en adelante):
+
+% Fijarse en el resultado del PDF para la siguiente línea
+\textbackslash renewcommand \textbackslash labelitemi\{\emph{ESTILO}\}
+
+En la definición de estos estilos podemos especificar, en vez de ``labelitemi'':
+
+\begin{itemize}
+	\item \emph{labelitemii} para listas no numeradas de Nivel 2
+	\item \emph{labelitemiii} para listas no numeradas de Nivel 3
+	\item\emph{labelitemiv} para listas no numeradas de Nivel 4
+\end{itemize}
+
+Entre los estilos que podemos especificar están:
+
+% Fijarse en el resultado del PDF para las siguiente línea
+\renewcommand\labelitemi{$\cdot$}
+\begin{itemize}
+	\item Cualquier texto o símbolo que deseemos, con el estilo que deseemos (negrita, cursiva, etc.).
+	\item \$\textbackslash square\$: $\square$
+	\item \$\textbackslash bullet\$: $\bullet$
+	\item \$\textbackslash ast\$: $\ast$
+	\item \$\textbackslash cdot\$: $\cdot$
+	\item \$\textbackslash blacksquare\$: $\blacksquare$
+\end{itemize}
+
+% reiniciamos el estilo de las listas
+\renewcommand\labelitemi{\tiny$\blacksquare$}
+
+\subsection{Estilos en listas numeradas}
+
+Podemos personalizar los estilos de las listas numeradas mediante mediante el siguiente código en el preámbulo (se cambiaría el estilo de todas las listas de todo el documento) o justo antes de comenzar una lista (solo se aplica para dicha lista):
+
+% Fijarse en el resultado del PDF para la siguiente línea
+\textbackslash renewcommand \textbackslash labelenumi\{\emph{ESTILO}\}
+
+En la definición de estos estilos podemos especificar, en vez de ``labelenumi'':
+
+\begin{itemize}
+	\item \emph{labelenumii} para listas numeradas de Nivel 2
+	\item \emph{labelenumiii} para listas numeradas de Nivel 3
+	\item \emph{labelenumiv} para listas numeradas de Nivel 4
+\end{itemize}
+
+Entre los estilos que podemos especificar están:
+
+% Fijarse en el resultado del PDF para las siguientes líneas
+\renewcommand\labelenumi{\scriptsize\emph{$\Roman{enumi}$.}}
+\begin{enumerate}
+
+	\item \$\textbackslash arabic\{enumi\}\$\ - Estilo de números (estilo por defecto) (1, 2, 3, etc.).
+	
+	\item \$\textbackslash roman\{enumi\}\$\ - Estilo de números romanos (i, ii, iii, etc.). Poner enumi, enumii, enumiii ó enumiv según el nivel de la lista.
+
+	\item \$\textbackslash Roman\{enumi\}\$\ - Estilo de números romanos en mayúsculas (I, II, III, IV, etc.).
+
+	\item \$\textbackslash alph\{enumi\}\$\ - Estilo de letras (a, b, c, etc.).
+
+	\item \$\textbackslash Alph\{enumi\}\$\ - Estilo de letras mayúsculas (A, B, C, etc.).
+
+\end{enumerate}
+
+% reiniciamos el estilo de las listas
+\renewcommand\labelenumi{$\arabic{enumi}$.}
+
+También podemos especificar el número inicial del contador en nuestras listas numeradas. Para ello usaremos el comando \textbackslash setcounter\{enumi\}\{\emph{VALOR INICIAL}\} (pondremos enumi, enumii, etc. según deseemos) dentro de la definición de nuestra lista:
+
+\begin{enumerate}
+\setcounter{enumi}{4} % aquí aplicariamos el comando
+	\item Primero
+	\item Segundo
+	\item Tercero
+\end{enumerate}
+
+\section{División en múltiples archivos}
+
+Una de las grandes dificultades que nos encontramos cuando comenzamos a trabajar con \LaTeX es lo dificultoso que es navegar por el código de un documento extenso. Para evitar dicho problema, aunque es opcional, \LaTeX permite dividir un documento en diversos ficheros usando el comando \textbackslash include\{\emph{RUTA ARCHIVO SIN EXTENSION .TEX}\}. De esta forma, podemos tener ficheros para cada capítulo, sección, etc. La división en ficheros la podemos realizar como deseemos.
+
+En este documento de ejemplo, los siguientes capítulos se encuentran en ficheros aparte, dentro de la carpeta \emph{capitulos}: \emph{cap02.tex} y \emph{cap03.tex}.
+
+Como se puede observar, el documento final incluirá todo el texto y comandos tanto del fichero principal como de los ficheros adicionales.
+
+\include{capitulos/cap02}
+
+\include{capitulos/cap03}
+
+\end{document}
