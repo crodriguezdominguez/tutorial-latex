@@ -96,7 +96,7 @@ Finalmente, podremos siempre usar el comando \textbackslash clearpage para forza
 
 Antes hemos mencionado los ``paquetes''. Un paquete es un archivo de \LaTeX que incluye nuevos estilos, comandos, opciones, etc. para dar un formato apropiado a nuestros documentos. Hay multitud de dichos paquetes, y es imprescindible conocer algunos de ellos para poder escribir un documento.
 
-Un paquete se incluye en el preámbulo mediante la palabra \textbackslash usepackage. Podemos observar en el código de este documento los paquetes más básicos que se usan en casi cualquier documento \LaTeX. 
+Un paquete se incluye en el preámbulo mediante la palabra \textbf{\textbackslash usepackage}. Podemos observar en el código de este documento los paquetes más básicos que se usan en casi cualquier documento \LaTeX. 
 
 El nombre del paquete será el indicado entre \{ \}.  Entre [ ] se introducen las opciones para configurar dicho paquete.
 
@@ -140,7 +140,7 @@ Igualmente podemos especificar el tipo de fuente:
 
 O bien especificarla para todo nuestro documento en el preámbulo mediante el comando: % mirar el comando en el PDF
 
-\textbackslash renewcommand\{\textbackslash familydefault\}\{\textbackslash sfdefault\}
+\textbf{\textbackslash renewcommand\{\textbackslash familydefault\}\{\textbackslash sfdefault\}}
 
 Los tipos de fuentes disponibles para el preámbulo son: \textbackslash rmdefault (serif, por defecto), \textbackslash sfdefault (sans serif), \textbackslash ttdefault (typewriter)
 
@@ -150,7 +150,7 @@ Mediante paquetes adicionales se dispone de una gran variedad de tipografías (t
 
 \subsection{Texto}
 
-Al incluir el paquete ``xcolor'' en el preámbulo podremos colorear  nuestro texto. Para ello usaremos el comando \textbackslash textcolor\{\emph{nombre color}\}, siendo el nombre del color cualquiera de los disponibles de manera predeterminada o cualquier definido por nosotros en el preámbulo del documento.
+Al incluir el paquete ``xcolor'' en el preámbulo podremos colorear  nuestro texto. Para ello usaremos el comando \textbf{\textbackslash textcolor\{\emph{nombre color}\}}, siendo el nombre del color cualquiera de los disponibles de manera predeterminada o cualquier definido por nosotros en el preámbulo del documento.
 
 Veamos un ejemplo:
 
@@ -164,11 +164,11 @@ adipiscing elit}.
 
 Podemos consultar el listado completo de colores básicos y avanzados en: \url{https://es.overleaf.com/learn/latex/Using_colours_in_LaTeX#Reference_guide}.
 
-Si algún color no está disponible en dicho listado, o deseamos especificar uno muy concreto, podemos usar el comando \textbackslash definecolor\{\emph{nombre nuevo color}\}\{\emph{formato (e.g.: RGB)}\}\{\emph{valores (e.g.: 219, 48, 122}\} en el preámbulo del documento. A partir de ese momento podremos usar ese nombre de color para especificar dicho color en todo nuestro documento.
+Si algún color no está disponible en dicho listado, o deseamos especificar uno muy concreto, podemos usar el comando \textbf{\textbackslash definecolor\{\emph{nombre nuevo color}\}\{\emph{formato (e.g.: RGB)}\}\{\emph{valores (e.g.: 219, 48, 122}\}} en el preámbulo del documento. A partir de ese momento podremos usar ese nombre de color para especificar dicho color en todo nuestro documento.
 
 \subsection{Fondo de páginas y color por defecto}
 
-El color de fondo se especifica mediante el comando \textbackslash pagecolor\{nombre color\} y el color del texto por defecto mediante  \textbackslash color\{nombre color\}
+El color de fondo se especifica mediante el comando \textbf{\textbackslash pagecolor\{nombre color\}} y el color del texto por defecto mediante  \textbf{\textbackslash color\{nombre color\}}.
 
 \section{Alineación de textos}
 
@@ -186,7 +186,7 @@ o alineado a la derecha,
 
 \section{Notas al pie y al margen}
 
-\LaTeX permite crear notas al pie o al margen de página de manera muy simple, usando los comandos \textbackslash foonote\{nota al pie\} y  \textbackslash marginpar\{nota al margen\}.
+\LaTeX permite crear notas al pie o al margen de página de manera muy simple, usando los comandos \textbf{\textbackslash foonote\{nota al pie\}} y \textbf{\textbackslash marginpar\{nota al margen\}}.
 
 Por ejemplo, este párrafo tiene asociado una nota al pie de página\footnote{Las notas al pie de página en \LaTeX son muy sencillas de incluir}.
 
@@ -226,7 +226,7 @@ Además, se pueden anidar:
 Podemos personalizar los estilos de las listas mediante mediante el siguiente código en el preámbulo (se cambiaría el estilo de todas las listas de todo el documento) o justo antes de comenzar una lista (solo se aplica a partir de dicha lista en adelante):
 
 % Fijarse en el resultado del PDF para la siguiente línea
-\textbackslash renewcommand \textbackslash labelitemi\{\emph{ESTILO}\}
+\textbf{\textbackslash renewcommand \textbackslash labelitemi\{\emph{ESTILO}\}}
 
 En la definición de estos estilos podemos especificar, en vez de ``labelitemi'':
 
@@ -257,7 +257,7 @@ Entre los estilos que podemos especificar están:
 Podemos personalizar los estilos de las listas numeradas mediante mediante el siguiente código en el preámbulo (se cambiaría el estilo de todas las listas de todo el documento) o justo antes de comenzar una lista (solo se aplica para dicha lista):
 
 % Fijarse en el resultado del PDF para la siguiente línea
-\textbackslash renewcommand \textbackslash labelenumi\{\emph{ESTILO}\}
+\textbf{\textbackslash renewcommand \textbackslash labelenumi\{\emph{ESTILO}\}}
 
 En la definición de estos estilos podemos especificar, en vez de ``labelenumi'':
 
@@ -288,7 +288,7 @@ Entre los estilos que podemos especificar están:
 % reiniciamos el estilo de las listas
 \renewcommand\labelenumi{$\arabic{enumi}$.}
 
-También podemos especificar el número inicial del contador en nuestras listas numeradas. Para ello usaremos el comando \textbackslash setcounter\{enumi\}\{\emph{VALOR INICIAL}\} (pondremos enumi, enumii, etc. según deseemos) dentro de la definición de nuestra lista:
+También podemos especificar el número inicial del contador en nuestras listas numeradas. Para ello usaremos el comando \textbf{\textbackslash setcounter\{enumi\}\{\emph{VALOR INICIAL}\}} (pondremos enumi, enumii, etc. según deseemos) dentro de la definición de nuestra lista:
 
 \begin{enumerate}
 \setcounter{enumi}{4} % aquí aplicariamos el comando
@@ -299,7 +299,7 @@ También podemos especificar el número inicial del contador en nuestras listas 
 
 \section{División en múltiples archivos}
 
-Una de las grandes dificultades que nos encontramos cuando comenzamos a trabajar con \LaTeX es lo dificultoso que es navegar por el código de un documento extenso. Para evitar dicho problema, aunque es opcional, \LaTeX permite dividir un documento en diversos ficheros usando el comando \textbackslash include\{\emph{RUTA ARCHIVO SIN EXTENSION .TEX}\}. De esta forma, podemos tener ficheros para cada capítulo, sección, etc. La división en ficheros la podemos realizar como deseemos.
+Una de las grandes dificultades que nos encontramos cuando comenzamos a trabajar con \LaTeX es lo dificultoso que es navegar por el código de un documento extenso. Para evitar dicho problema, aunque es opcional, \LaTeX permite dividir un documento en diversos ficheros usando el comando \textbf{\textbackslash include\{\emph{RUTA ARCHIVO SIN EXTENSION .TEX}\}}. De esta forma, podemos tener ficheros para cada capítulo, sección, etc. La división en ficheros la podemos realizar como deseemos.
 
 En este documento de ejemplo, los siguientes capítulos se encuentran en ficheros aparte, dentro de la carpeta \emph{capitulos}: \emph{cap02.tex} y \emph{cap03.tex}.
 
