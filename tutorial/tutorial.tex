@@ -14,6 +14,8 @@
 \usepackage{wrapfig} % tablas o imágenes envueltas en texto
 \graphicspath{ {imagenes/} } % carpeta donde meteremos las imágenes
 
+\usepackage{hyperref} % crear hipervínculos automáticos en índices, enlaces, etc. Se suele importar como ÚLTIMO PAQUETE para que funcione apropiadamente.
+
 % el comando \LaTeX incluye el logo de LaTeX en el documento.
 \title{Tutorial de \LaTeX}
 \author{Carlos Rodríguez Domínguez}
@@ -45,15 +47,26 @@ Al principio \LaTeX es un poco abrumador, así que trataremos de aprenderlo paso
 
 Para ello, leeremos este documento con el código a su lado. De esta manera observaremos cómo se podría escribir un documento similar a este.
 
+\section{Comentarios} % Esto puede ser un comentario. Podemos ver que en el pdf generado no aparece
+
+Dentro de nuestro código podemos dejar indicaciones para recordar ciertos detalles o dar instrucciones a nuestros compañeros. Los comentarios jamás se visualizarán en el documento final. Los comentarios debemos comenzarlos por el símbolo \%.
+
 \section{Comandos}
 
 Los comandos son instrucciones para \LaTeX que permiten formatear nuestro documento como deseemos. Siempre comienzan por la letra \textbackslash.
 
-Los comandos tienen parámetros y opciones. Los parámetros son aquellos contenidos que toma el comando para poder producir los resultados que esperamos. Las opciones son parámetros no obligatorios que habitualmente alteran la manera de actuar del comando principal. Por ejemplo, pueden cambiar el tamaño por defecto de una figura (se verá más adelante).
+Los comandos tienen parámetros y opciones. Los parámetros son aquellos contenidos que toma el comando para poder producir los resultados que esperamos. Se ponen entre \{ \}.
 
-\section{Comentarios} % Esto puede ser un comentario. Podemos ver que en el pdf generado no aparece
+Las opciones son parámetros no obligatorios que habitualmente alteran la manera de actuar del comando principal. Se ponen entre [ ]. Por ejemplo, permiten cambiar el tamaño por defecto de una figura (se verá más adelante).
 
-Dentro de nuestro código podemos dejar indicaciones para recordar ciertos detalles o dar instrucciones a nuestros compañeros. Los comentarios jamás se visualizarán en el documento final. Los comentarios debemos comenzarlos por el símbolo \%.
+\subsection{Comandos personalizados}
+
+% mirar el resultado de toda esta sección en el PDF
+Se pueden crear nuevos comandos en el preámbulo mediante el comando \textbf{\textbackslash newcommand\{\textbackslash \emph{nombre}\}[\emph{núm. parámetros}]\{\emph{definición}\}}.
+
+De esta forma, si pusiésemos \textbackslash newcommand\{\textbackslash hello\}[1]\{Hola \{\#1\}\} podríamos usar el comando \textbackslash hello\{Mundo\}, cuyo resultado sería ``Hola Mundo''.
+
+Asimismo, podemos cambiar los comandos de \LaTeX o de cualquier paquete usando el comando \textbf{\textbackslash renewcommand}, con la misma sintáxis que \textbackslash newcommand.
 
 \section{Símbolos reservados y caracteres especiales}
 
