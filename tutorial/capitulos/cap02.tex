@@ -138,6 +138,25 @@ Un ejemplo de tabla con filas y columnas combinadas es el que sigue\footnote{Mir
  \hline
 \end{tabular}
 
+\subsection{Importación desde CSV}
+
+\LaTeX permite crear tablas a partir de archivos CSV externos. Para ello tendremos que importar el paquete ``csvsimple''. Dicho paquete permite autogenerar las tablas mediante el comando \textbf{\textbackslash csvautotabular\{\emph{fichero CSV}\}} o bien usar los datos del CSV para generar nuestra propia tabla personalizada.
+
+Por ejemplo, el comando \textbackslash csvautotabular\{csv/ejemplo.csv\} generaría la siguiente tabla:
+
+\csvautotabular{csv/ejemplo.csv}
+
+Si deseamos tener un control exhaustivo sobre cómo se visualizan los diferentes elementos de la tabla, podemos usar el comando \textbf{\textbackslash csvreader[opciones]\{\emph{fichero CSV}\}\{\emph{columnas}\}\{\emph{formato columnas}\}}. Las \emph{columnas} son una secuencia de ``nombre=\textbackslash clave'' donde a cada nombre de columna del CSV le asociaremos un comando de \LaTeX personalizado. En \emph{formato columnas} usaremos dichos comandos para aplicarle un formato a los valores de dichas columnas en cada fila. También podremos usar el comando \textbf{\textbackslash thecsvrow} para referirnos al número de la fila.
+
+Un ejemplo de su uso se muestra a continuación\footnote{Véase el código \LaTeX para comprender cómo se ha generado la tabla mostrada}. La documentación completa del paqueta ``csvsimple'' se encuentra disponible en \url{https://tools.ietf.org/doc/texlive-doc/latex/csvsimple/csvsimple.pdf}.
+
+\begin{tabular}{l|l||c|c|c}
+	\hline
+	\textbf{\#} & \textbf{Mes} & \textbf{1958} & \textbf{1959} & \textbf{1960}\\
+	\hline
+	\csvreader[head to column names, late after line=\\\hline]{csv/ejemplo.csv}{Month=\month,1958=\anhoA,1959=\anhoB,1960=\anhoC}{\textbf{\thecsvrow} & \month & \emph{\anhoA} & \emph{\anhoB} & \emph{\anhoC}}
+ \end{tabular}
+ 
 \section{Listados de código}
 
 A lo largo de este documento hemos tenido que incluir código de \LaTeX para comprender su sintaxis. Existen dos comandos para hacer listados de código de manera mucho más sencilla a como hemos visto hasta ahora.
